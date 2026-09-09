@@ -59,6 +59,58 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  /* Muse — liquid obsidian tokens */
+  --color-ink: #07070b;
+  --color-ink2: #0e0e15;
+  --color-ink3: #171721;
+  --color-glass: #23232f;
+  --color-lume: #c6b6ff;
+  --color-lume-cyan: #86e0e0;
+  --color-lume-amber: #f4c98a;
+  --color-lume-rose: #f2a8c0;
+  --color-mist: #ffffff;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@utility glass {
+  background:
+    radial-gradient(130% 90% at 20% -12%, rgba(198, 182, 255, 0.22), transparent 55%),
+    radial-gradient(120% 80% at 92% 118%, rgba(134, 224, 224, 0.16), transparent 55%),
+    linear-gradient(165deg, #1b1b26 0%, #0c0c12 62%, #07070b 100%);
+}
+
+@utility spec {
+  background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.12) 50%, transparent 63%);
+}
+
+@utility animate-snap {
+  animation: snap 0.5s cubic-bezier(0.2, 0.85, 0.25, 1) both;
+}
+
+@utility animate-wipe {
+  transform-origin: left;
+  animation: wipe 0.6s cubic-bezier(0.3, 0.8, 0.2, 1) both;
+}
+
+@keyframes snap {
+  0% {
+    transform: translateY(10px) rotate(-2deg) scale(0.985);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes wipe {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 :root {
@@ -138,7 +190,7 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: #07070b;
     color: var(--color-foreground);
   }
 }
