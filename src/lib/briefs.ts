@@ -289,25 +289,25 @@ export interface Brief {
   timeLimit: string;
 }
 
-const pick = <T,>(arr: T[], exclude?: T): T => {
-  let item = arr[Math.floor(Math.random() * arr.length)];
+const pick = <T,>(arr: readonly T[], exclude?: T): T => {
+  let item = arr[Math.floor(Math.random() * arr.length)]!;
   while (exclude !== undefined && arr.length > 1 && item === exclude) {
-    item = arr[Math.floor(Math.random() * arr.length)];
+    item = arr[Math.floor(Math.random() * arr.length)]!;
   }
   return item;
 };
 
-export function rollField<T>(arr: T[], current: T): T {
+export function rollField<T>(arr: readonly T[], current: T): T {
   return pick(arr, current);
 }
 
 export function rollBrief(currentMoodId?: string): Brief {
   const current = MOODS.find((m) => m.id === currentMoodId);
-  const mood = pick(MOODS, current);
+  const mood = current ? pick(MOODS, current) : pick(MOODS);
   return {
     mood,
     subject: pick(SUBJECTS),
-    medium: pick(MEDIUMS, mood.medium) ?? mood.medium,
+    medium: mood.medium,
     composition: pick(COMPOSITIONS),
     lighting: pick(LIGHTINGS),
     timeLimit: pick(TIME_LIMITS),
